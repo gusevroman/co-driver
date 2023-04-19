@@ -15,18 +15,20 @@ export const Weather = () => {
   }
 
   return (
-    <div>
+    <>
       <input type="text" value={city} onChange={e => setCity(e.target.value)} />
       <button onClick={handleSearch}>Search</button>
-      {weatherData &&
-          <div>
+      {weatherData ? (
+        <div>
             <h2>{weatherData.name}</h2>
             <img src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt="weather icon" />
             <p>{weatherData.main.temp}°C</p>
-            <p>{weatherData.weather[0].description}</p>
-          </div>
-      }
-    </div>
+          <p>Condition: {weatherData.weather[0].description}</p>
+        </div>
+      ) : (
+        <p>No weather data available</p>
+      )}
+    </>
   );
 };
 
